@@ -1,0 +1,29 @@
+<div ng-controller="PictureCtrl">
+  <div class="row">
+
+    <div class="col-md-9">
+
+      <h2>Es gibt {{pictures.length}} Bilder <a ng-click="delAllPictures()" class="btn btn-default "><i class="fa fa-trash"></i> Alle Löschen</a></h2>
+
+      <div class="picture gallery">
+        <ul class="picture">
+          <li class="col-lg-4 col-md-4 col-sm-4 col-xs-12 picture" ng-repeat="pic in pictures | filter:query">
+            <img ng-src="uploads/{{pic.url}}" class="img-responsive thumbnail">
+            <i>{{pic.caption}}</i><br>
+            <b>{{pic.category}}</b><br>
+            <a ng-click="delPicture(pic)" class="delete-button btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <h2>Suchen</h2>
+      <div class="form-group">
+        <label>Name / Kategorie / Bildunterschrift</label>
+        <input type="text" class="form-control" placeholder="Text ..." ng-model="query"></input>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.main-content {
+  padding-top: 70px;
+}
+
+.navbar-fixed-top {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: hidden !important;
+}
+
+.view-container {
+  position: relative;
+}
+
+.centered {
+    float: none;
+    margin: 0 auto;
+    display: block;
+}

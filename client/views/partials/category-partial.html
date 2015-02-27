@@ -1,0 +1,25 @@
+<div ng-controller="CategoryCtrl">
+  <div class="row">
+
+    <div class="col-md-9">
+      <div class="row">
+         <h2>Es gibt {{categories.length}} Kategorien</h2>
+      </div>
+
+      <div>
+        <ul class="picture">
+          <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 picture" ng-repeat="pic in pictures | filter:query">
+            <img ng-src="uploads/{{pic.url}}" class="img-responsive thumbnail">
+            <i>{{pic.caption}}</i><br>
+            <b>{{pic.category}}</b><br>
+            <a ng-click="delPicture(pic)" class="delete-button btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+          </li>
+        </ul>
+      </div>
+
+    <div class="col-md-3">
+
+    </div>
+
+  </div>
+</div>

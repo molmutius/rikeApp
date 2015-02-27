@@ -1,0 +1,23 @@
+.upload-gallery
+{
+
+}
+
+.upload-gallery
+ul {         
+    padding:0 0 0 0;
+    margin:0 0 0 0;
+}
+
+.upload-gallery
+ul li {     
+    border: 1px;
+	color: #000;
+    list-style:none;
+    margin-bottom:25px;           
+}
+
+.upload-gallery
+ul li img {
+    cursor: pointer;
+}
