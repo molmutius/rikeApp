@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="/css/category.css">
+
 <div ng-controller="CategoryCtrl">
   <div class="row">
 
@@ -7,19 +9,31 @@
       </div>
 
       <div>
-        <ul class="picture">
-          <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 picture" ng-repeat="pic in pictures | filter:query">
-            <img ng-src="uploads/{{pic.url}}" class="img-responsive thumbnail">
-            <i>{{pic.caption}}</i><br>
-            <b>{{pic.category}}</b><br>
-            <a ng-click="delPicture(pic)" class="delete-button btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+        <ul class="category-style">
+          <li class="category-style" ng-repeat="category in categories | filter:query">
+            <p>{{category.value}}
+            <a ng-click="delCategory(category)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a></p>
           </li>
         </ul>
-      </div>
+      </div>    
+    </div>
 
     <div class="col-md-3">
+      <h2>Kategorie Hinzufügen</h2>
+
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Name..." ng-model="cat">
+        <span class="input-group-btn">
+          <a type="submit" ng-click="addCategory(cat)" class="btn  btn-success"><i class="fa fa-plus"></i></a>
+        </span>
+      </div>
+
+      <h2>Suchen</h2>
+      <div class="form-group">
+        <label>Filtern nach Name</label>
+        <input type="text" class="form-control" placeholder="Text ..." ng-model="query"></input>
+      </div>
 
     </div>
 
-  </div>
 </div>

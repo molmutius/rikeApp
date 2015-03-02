@@ -2,7 +2,12 @@
   <div class="row">
 
     <div class="col-md-9">
+      <div ng-show="loader.loading" class="form-group">
+        <i class="fa fa-cog fa-spin fa-5x"></i>
+      </div>
+    </div>
 
+    <div class="col-md-9" ng-hide="loader.loading">
       <h2>Es gibt {{pictures.length}} Bilder <a ng-click="delAllPictures()" class="btn btn-default "><i class="fa fa-trash"></i> Alle Löschen</a></h2>
 
       <div class="picture gallery">

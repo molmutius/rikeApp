@@ -19,6 +19,7 @@
               <div class="form-group">  
                 <label>Kategorie</label>
                 <input class="form-control" placeholder="Kategorie ..." ng-model="pic.category"></input>
+                <select class="form-control" ng-model="category.value" ng-options="opt as opt.value for opt in categoryOptions"></select>
               </div>
               <div class="form-group">
                 <a type="submit" ng-click="addPicture(pic)" class="btn pull-right btn-success"><i class="fa fa-check"></i></a>
@@ -43,38 +44,16 @@
             <label>Bild(er) von Festplatte wählen</label><br>
             <button class="btn btn-default pull-right" accept=".jpg,.png" ng-multiple="true" ng-file-select ng-file-change="upload($files)">Durchsuchen ...</button>
           </div>
+        </form>
 
-          <div ng-show="loader.loading" class="form-group">
-            <div>Hochladen...</div>
-            <div class="progress">
-              <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{loader.progress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{loader.progress}}%">
-                <span class="centered text-center" style="color:white">{{loader.progress}}%</span>
-              </div>
+        <div ng-show="loader.loading" class="form-group">
+          <div>Hochladen...</div>
+          <div class="progress">
+            <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{loader.progress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{loader.progress}}%">
+              <span class="centered text-center" style="color:white">{{loader.progress}}%</span>
             </div>
           </div>
-
-        </form>
-      
-
-      <!--
-      <div class="row">
-        <form ng-submit="addPicture()">
-          <div class="form-group">
-            <label>Bildunterschrift</label>
-            <input type="text" class="form-control" placeholder="Bildunterschrift ..." ng-model="pictureCaption"></input>
-          </div>
-          <div class="form-group">
-            <label>Dateipfad</label>
-            <input type="text" class="form-control" placeholder="Pfad ..." ng-model="pictureUrl"></input>
-          </div>
-          <div class="form-group">  
-            <label>Kategorien</label>
-            <input type="text" class="form-control" placeholder="Kategorien ..." ng-model="pictureCategory"></input>
-          </div>
-          <button type="submit" class="btn btn-default">Add</button>
-        </form>
-      </div>
-    -->
+        </div>
 
   </div>
 </div>

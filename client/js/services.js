@@ -33,3 +33,24 @@ appService.service('FileService', function() {
 		},
 	};
 });
+
+appService.service('CategoryService', function() {
+
+	var categories = [];
+
+	return {
+		get: function () {
+			return categories;
+		},
+		add: function (_name) {
+			categories.push(_name);
+		},
+		remove: function (_name) {
+			var index = categories.indexOf(_name);
+			if (index > -1) {
+				categories.splice(index, 1);
+			}
+		},
+	};
+
+});

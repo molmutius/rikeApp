@@ -5,7 +5,11 @@ var express               = require('express'),
     pictureController     = require('./server/controllers/picture-controller'),
     categoryController    = require('./server/controllers/category-controller');
 
-mongoose.connect('mongodb://localhost:27017/mean-demo');
+var ip = 'localhost';
+if (process.env.IP) {
+  ip = 'process.env.IP';
+}
+mongoose.connect('mongodb://'+ ip +':27017/rikeApp');
 
 app.use(bodyParser());
 
@@ -39,6 +43,11 @@ app.post('/api/cat', categoryController.add);
 app.delete('/api/cat/:id', categoryController.delete);
 
 // start server
-app.listen(3000, function() {
-  console.log('I\'m Listening on 3000...');
+var port = 3000;
+if (process.env.PORT) {
+  port = process.env.PORT; // cloud9
+}
+
+app.listen(port, function() {
+  console.log('I\'m Listening on ' + port + '...');
 })

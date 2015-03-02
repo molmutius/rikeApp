@@ -19,9 +19,17 @@ module.exports.list = function (req, res) {
 
 module.exports.delete = function (req, res) {
   Picture.findByIdAndRemove(req.params.id, req.body, function (err, result) {
+
+    var path = '';
+    if (process.env.PORT) {
+      path = '/../../uploads/'; // clound9
+    } else {
+      path = '../../../uploads/'; // dev
+    }    
+
     if (err) console.log(err);
     if (result) {
-      filesystem.unlink( __dirname + '../../../uploads/' + result.url, function (err) {
+      filesystem.unlink( __dirname + path + result.url, function (err) {
         if (err) console.log(err);
       });
     }
