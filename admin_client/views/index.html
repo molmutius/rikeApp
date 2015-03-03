@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="rikeApp" ng-controller="MainController"> 
+  <head>
+      <base href="/admin/">
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title></title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!--<link rel="stylesheet" type="text/css" href="/bower/bootstrap/dist/css/bootstrap.css">-->
+      <link rel="stylesheet" ng-href="{{ css }}">
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="/css/main.css">
+      <link rel="stylesheet" type="text/css" href="/css/gallery.css">
+      <link rel="stylesheet" type="text/css" href="/css/animations.css">
+  </head>
+  <body ng-cloak>
+
+    <nav class="navbar navbar-default navbar-fixed-top" bs-navbar>
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li ng-class="{ active: isActive('/')}"><a href="/admin/#/">Home</a></li>
+          <li ng-class="{ active: isActive('/pictures')}"><a href="/admin/#/pictures">Bilder</a></li>
+          <li ng-class="{ active: isActive('/upload')}"><a href="/admin/#/upload">Upload</a></li>
+          <li ng-class="{ active: isActive('/category')}"><a href="/admin/#/category">Kategorien</a></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+          <div class="form-group">
+            <label>Theme:</label>
+            <select class="form-control" ng-model="css" ng-options="bootstrap.url as bootstrap.name for bootstrap in bootstraps"></select>
+          </div> 
+        </form>
+      </div>
+    </nav>
+
+    <div class="view-container">
+      <div class="container main-content view-frame" ng-view></div>
+    </div>
+      
+    <script type="text/javascript" src="/bower/angular/angular.js"></script>
+    <script type="text/javascript" src="/bower/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="/bower/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="/bower/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="/bower/ng-file-upload/angular-file-upload.js"></script>
+
+    <script type="text/javascript" src="/bower/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/controllers/home-controller.js"></script>
+    <script type="text/javascript" src="/js/controllers/category-controller.js"></script>
+    <script type="text/javascript" src="/js/controllers/picture-controller.js"></script>
+    <script type="text/javascript" src="/js/controllers/upload-controller.js"></script>
+    <script type="text/javascript" src="/js/services.js"></script>
+    <script type="text/javascript" src="/js/animations.js"></script>
+  </body>
+</html>

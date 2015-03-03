@@ -40,9 +40,17 @@ module.exports.add = function (req, res) {
   
   // make thumbnail
   lwip.open( path + tmp + picture.url, function (err, image) {
+    var scaleFactor = 0.5;
+    if (image.width() > 1080 || image.height() > 1080) {
+      scaleFactor = 0.3;
+    } else 
+    if (image.width() > 1600|| image.height() > 1600) {
+      scaleFactor = 0.2;
+    }
     image.batch()
-      .resize(300, 300)
-      .writeFile(path + thumbs + picture.url, "jpg", { quality : 70 }, function (err) {
+      .scale(scaleFactor)
+      .crop(300,300)
+      .writeFile(path + thumbs + picture.url, "jpg", { quality : 50 }, function (err) {
         if (err) console.log('Error writing thumbnail: ' + err);
       });
   });

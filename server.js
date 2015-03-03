@@ -1,33 +1,33 @@
-var express               = require('express'),
-    app                   = express(),
-    bodyParser            = require('body-parser'),
-    mongoose              = require('mongoose'),
-    pictureController     = require('./server/controllers/picture-controller'),
-    categoryController    = require('./server/controllers/category-controller');
+var express               = require('express');
+var app                   = express();
+var bodyParser            = require('body-parser');
+var mongoose              = require('mongoose');
+var pictureController     = require('./server/controllers/picture-controller');
+var categoryController    = require('./server/controllers/category-controller');
+var passport              = require('passport');
+var flash                 = require('connect-flash');
+var session               = require('express-session');
 
+// connect mongodb
 var ip = 'localhost';
 if (process.env.IP) {
   ip = 'process.env.IP';
 }
 mongoose.connect('mongodb://'+ ip +':27017/rikeApp');
 
+// passport
+require('./server/passport')(passport);
+app.use(session({secret : 'superduperphotographystuffstuff'}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+// body parser 
 app.use(bodyParser());
 
-// send main angular index.html
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/client/views/index.html');
-});
-
-// deliver rendered partials for angular
-app.get('/views/partials/:filename', function(req, res){
-  var filename = req.params.filename;
-  if(!filename) return;  // might want to change this
-  res.sendfile(__dirname + '/client/views/partials/' + filename + '.html');
-});
-
 // statics
-app.use('/css', express.static(__dirname + '/client/css'));
-app.use('/js', express.static(__dirname + '/client/js'));
+app.use('/css', express.static(__dirname + '/admin_client/css'));
+app.use('/js', express.static(__dirname + '/admin_client/js'));
 app.use('/bower', express.static(__dirname + '/bower_components/'));
 app.use('/uploads', express.static(__dirname + '/uploads/'));
 
@@ -42,6 +42,9 @@ app.delete('/api/pics/unlink/:filename', pictureController.deleteByFilename);
 app.get('/api/cat', categoryController.list);
 app.post('/api/cat', categoryController.add);
 app.delete('/api/cat/:id', categoryController.delete);
+
+// admin routes
+require('./server/routes/admin-routes.js')(app, passport);
 
 // start server
 var port = 3000;
