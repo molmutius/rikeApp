@@ -30,5 +30,8 @@ rikeApp.config(['$routeProvider',
 			when('/category', {
 				templateUrl: 'views/partials/category-partial',
 				controller: 'CategoryCtrl'
+			}).
+			otherwise({ 
+				reditrectTo : "/" 
 			});
 }]);
