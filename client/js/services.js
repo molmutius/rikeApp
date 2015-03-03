@@ -1,7 +1,7 @@
 var appService = angular.module('rikeAppService', []);
 
-appService.service('FileService',
- function() {
+appService.service('FileService', ['$resource',
+ function($resource) {
 	var files = [];
 
 	function FileObject (_filename, _caption, _category) {
@@ -32,15 +32,15 @@ appService.service('FileService',
 				files.splice(index, 1);
 			}	
 		},
-		delete: function (_id) {
-			var DelPicture = $resource('/api/pics/:id');
-			var picture = new DelPicture({ "_id" : _id });
-			picture.$remove( {id: _id}, function (err, result) {
+		delete: function (_filename) {
+			var DelPicture = $resource('/api/pics/unlink/:filename');
+			var picture = new DelPicture({ "filename" : _filename });
+			picture.$remove( {filename: _filename}, function (err, result) {
 				if (err) console.log(err);
 			})
-		}
+		},
 	};
-});
+}]);
 
 appService.factory('CategoryService', ['$resource',
  function($resource) {

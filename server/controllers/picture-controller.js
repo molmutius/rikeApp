@@ -37,6 +37,19 @@ module.exports.delete = function (req, res) {
   });
 }
 
+module.exports.deleteByFilename = function (req, res) {
+  var path = '';
+  if (process.env.PORT) {
+    path = '/../../uploads/'; // clound9
+  } else {
+    path = '/../../uploads/'; // dev
+  }    
+  filesystem.unlink( __dirname + path + req.params.filename, function (err) {
+    if (err) console.log(err);
+  });
+  res.send(200);
+}
+
 module.exports.upload = function (req, res) {
   var form = new multiparty.Form({ uploadDir : __dirname + '../../../uploads/' });
   form.parse(req, function(err, fields, files) {

@@ -67,8 +67,8 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
 
   $scope.delPicture = function (pic) {
     console.log(pic);
-    FileService.remove(pic)
-    FileService.delelte(pic);
+    FileService.remove(pic.filename)
+    FileService.delete(pic.filename);
   };
 
   $scope.addPicture = function (pic) {

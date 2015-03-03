@@ -36,6 +36,7 @@ app.get('/api/pics', pictureController.list);
 app.post('/api/pics', pictureController.add);
 app.delete('/api/pics/:id', pictureController.delete);
 app.post('/api/pics/upload', pictureController.upload);
+app.delete('/api/pics/unlink/:filename', pictureController.deleteByFilename);
 
 // REST API CATEGORY
 app.get('/api/cat', categoryController.list);
