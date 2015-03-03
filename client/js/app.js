@@ -5,7 +5,10 @@ var rikeApp = angular.module('rikeApp', [
 	'ngAnimate',
 	'angularFileUpload',
 	'rikeAppService',
-	'rikeAppController'
+	'rikeAppHomeController',
+	'rikeAppPictureController',
+	'rikeAppUploadController',
+	'rikeAppCategoryController',
 ]);
 
 // routes

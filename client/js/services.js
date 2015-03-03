@@ -1,6 +1,7 @@
 var appService = angular.module('rikeAppService', []);
 
-appService.service('FileService', function() {
+appService.service('FileService',
+ function() {
 	var files = [];
 
 	function FileObject (_filename, _caption, _category) {
@@ -34,23 +35,32 @@ appService.service('FileService', function() {
 	};
 });
 
-appService.service('CategoryService', function() {
+appService.service('CategoryService', ['$resource',
+ function($resource) {
 
-	var categories = [];
+	var Category = $resource('/api/cat');
+ 	var cats = [];
+ 	Category.query(function (results) { 
+		cats = results;
+	});
 
 	return {
-		get: function () {
-			return categories;
+		get: function (callback) {
+			callback(cats);			
 		},
-		add: function (_name) {
-			categories.push(_name);
+		add: function (_name, callback) {
+			var category = new Category();
+			category.value = _name;
+			category.$save(function (result) {
+				callback(result);
+			});
 		},
-		remove: function (_name) {
-			var index = categories.indexOf(_name);
-			if (index > -1) {
-				categories.splice(index, 1);
-			}
+		remove: function (_cat) {
+			var DelCategory = $resource('/api/cat/:id');
+			var category = new DelCategory( { "_id" : _cat._id });
+			category.$remove( {id : _cat._id}, function (err, result) {
+				if (err) console.log(err);
+		    });
 		},
 	};
-
-});
+}]);

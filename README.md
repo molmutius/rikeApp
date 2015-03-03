@@ -1,3 +1,3 @@
-#Source for MEAN SF Developers Talk
+#RikeApp.
 
-https://www.youtube.com/watch?v=AEE7DY2AYvI
+Photographer-page backend in development.
