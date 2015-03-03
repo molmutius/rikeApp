@@ -26,27 +26,34 @@ appService.service('FileService',
 		add: function (_file, _caption, _category) {		
 			files.push(new FileObject(_file, _caption, _category));
 		},
-		remove: function (_file) {	
+		remove: function (_file) {
 			var index = objectFindByKey(files, 'filename', _file);
 			if (index > -1) {
 				files.splice(index, 1);
 			}	
 		},
+		delete: function (_id) {
+			var DelPicture = $resource('/api/pics/:id');
+			var picture = new DelPicture({ "_id" : _id });
+			picture.$remove( {id: _id}, function (err, result) {
+				if (err) console.log(err);
+			})
+		}
 	};
 });
 
-appService.service('CategoryService', ['$resource',
+appService.factory('CategoryService', ['$resource',
  function($resource) {
 
 	var Category = $resource('/api/cat');
  	var cats = [];
- 	Category.query(function (results) { 
-		cats = results;
-	});
 
 	return {
 		get: function (callback) {
-			callback(cats);			
+			Category.query().$promise.then(function (results) {
+				cats = results;
+				callback(cats);	
+			});
 		},
 		add: function (_name, callback) {
 			var category = new Category();

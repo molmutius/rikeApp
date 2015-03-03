@@ -4,15 +4,12 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
 .controller('UploadCtrl', ['$scope', '$upload', '$resource', 'FileService', 'CategoryService',
   function ($scope, $upload, $resource, FileService, CategoryService) {
 
-  $scope.categoryOptions = [
-    { name: '0', value: '' },
-  ];
-
   var categories = [];
   CategoryService.get(function (result) {
     categories = result;
+    $scope.categoryOptions = [{ name: '0', value: '' }];
     for (var i = 0; i < categories.length; i++) {
-      $scope.categoryOptions.push({ name: i, value: categories[i].value});
+      $scope.categoryOptions.push({ name: (i + 1), value: categories[i].value});
     }
     $scope.category = $scope.categoryOptions[0];
   });
@@ -44,7 +41,7 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
           $scope.loader.progress = progressPercentage;
         }).success(function (data, status, headers, config) {
-            //console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
+          //console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
           var filename = data.file[0].path.replace(/\\/g,"/");
           filename = filename.split("/");
           filename = filename[filename.length - 1]
@@ -69,7 +66,9 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
   };
 
   $scope.delPicture = function (pic) {
-    FileService.remove(pic.url)
+    console.log(pic);
+    FileService.remove(pic)
+    FileService.delelte(pic);
   };
 
   $scope.addPicture = function (pic) {

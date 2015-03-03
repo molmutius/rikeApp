@@ -24,7 +24,7 @@ module.exports.delete = function (req, res) {
     if (process.env.PORT) {
       path = '/../../uploads/'; // clound9
     } else {
-      path = '../../../uploads/'; // dev
+      path = '/../../uploads/'; // dev
     }    
 
     if (err) console.log(err);

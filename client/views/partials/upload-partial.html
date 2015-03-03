@@ -11,18 +11,17 @@
         <ul class="picture">
           <li class="col-lg-6 col-md-6 col-sm-6 col-xs-12 picture" ng-repeat="pic in pics">
             <img ng-src="uploads/{{pic.filename}}" class="img-responsive thumbnail">
-            <form ng-submit="addPicture()">
+            <form>
               <div class="form-group">
                 <label>Bildunterschrift</label>
                 <input type="text" class="form-control" placeholder="Bildunterschrift ..." ng-model="pic.caption"></input>
               </div>
               <div class="form-group">  
                 <label>Kategorie</label>
-                <input class="form-control" placeholder="Kategorie ..." ng-model="pic.category"></input>
-                <select class="form-control" ng-model="category.value" ng-options="opt as opt.value for opt in categoryOptions"></select>
+                <input class="form-control" ng-model="pic.category" placeholder="Kategorie ..."></input>
               </div>
               <div class="form-group">
-                <a type="submit" ng-click="addPicture(pic)" class="btn pull-right btn-success"><i class="fa fa-check"></i></a>
+                <a ng-click="addPicture(pic)" class="btn pull-right btn-success"><i class="fa fa-check"></i></a>
                 <a ng-click="delPicture(pic)" class="btn pull-right btn-danger"><i class="fa fa-trash"></i></a>
               </div>
             </form>
