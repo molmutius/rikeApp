@@ -5,8 +5,8 @@ var mongoose              = require('mongoose');
 var pictureController     = require('./server/controllers/picture-controller');
 var categoryController    = require('./server/controllers/category-controller');
 var passport              = require('passport');
-var flash                 = require('connect-flash');
 var session               = require('express-session');
+var flash                 = require('connect-flash');
 
 // connect mongodb
 var ip = 'localhost';
@@ -17,13 +17,13 @@ mongoose.connect('mongodb://'+ ip +':27017/rikeApp');
 
 // passport
 require('./server/passport')(passport);
-app.use(session({secret : 'superduperphotographystuffstuff'}));
+app.use(session({ secret : 'superduperphotographystuffstuff', saveUninitialized: true, resave:true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
 // body parser 
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({extended:true}));
 
 // statics
 app.use('/css', express.static(__dirname + '/admin_client/css'));
