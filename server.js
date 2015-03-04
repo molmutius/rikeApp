@@ -7,6 +7,8 @@ var categoryController    = require('./server/controllers/category-controller');
 var passport              = require('passport');
 var session               = require('express-session');
 var flash                 = require('connect-flash');
+var favicon               = require('serve-favicon');
+var path                  = require('path');
 
 // connect mongodb
 var ip = 'localhost';
@@ -30,18 +32,19 @@ app.use('/css', express.static(__dirname + '/admin_client/css'));
 app.use('/js', express.static(__dirname + '/admin_client/js'));
 app.use('/bower', express.static(__dirname + '/bower_components/'));
 app.use('/uploads', express.static(__dirname + '/uploads/'));
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
 // REST API PICTURES
 app.get('/api/pics', pictureController.list);
-app.post('/api/pics', pictureController.add);
-app.delete('/api/pics/:id', pictureController.delete);
-app.post('/api/pics/upload', pictureController.upload);
-app.delete('/api/pics/unlink/:filename', pictureController.deleteByFilename);
+app.post('/api/pics', isLoggedIn, pictureController.add);
+app.delete('/api/pics/:id', isLoggedIn, pictureController.delete);
+app.post('/api/pics/upload', isLoggedIn, pictureController.upload);
+app.delete('/api/pics/unlink/:filename', isLoggedIn, pictureController.deleteByFilename);
 
 // REST API CATEGORY
 app.get('/api/cat', categoryController.list);
-app.post('/api/cat', categoryController.add);
-app.delete('/api/cat/:id', categoryController.delete);
+app.post('/api/cat', isLoggedIn, categoryController.add);
+app.delete('/api/cat/:id', isLoggedIn, categoryController.delete);
 
 // admin routes
 require('./server/routes/admin-routes.js')(app, passport);
@@ -55,3 +58,9 @@ if (process.env.PORT) {
 app.listen(port, function() {
   console.log('I\'m Listening on ' + port + '...');
 })
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+    res.redirect('/login');
+}

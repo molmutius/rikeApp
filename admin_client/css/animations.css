@@ -2,10 +2,10 @@
 .picture.ng-enter,
 .picture.ng-leave,
 .picture.ng-move {
-  -webkit-transition: 0.5s linear all;
-  -moz-transition: 0.5s linear all;
-  -o-transition: 0.5s linear all;
-  transition: 0.5s linear all;
+  -webkit-transition: 0.3s linear all;
+  -moz-transition: 0.3s linear all;
+  -o-transition: 0.3s linear all;
+  transition: 0.3s linear all;
 }
 
 .picture.ng-enter,
@@ -48,18 +48,18 @@
 }
 
 .view-frame.ng-enter {
-  -webkit-animation: 0.5s fade-in;
-  -moz-animation: 0.5s fade-in;
-  -o-animation: 0.5s fade-in;
-  animation: 0.5s fade-in;
+  -webkit-animation: 0.3s fade-in;
+  -moz-animation: 0.3s fade-in;
+  -o-animation: 0.3s fade-in;
+  animation: 0.3s fade-in;
   z-index: 100;
 }
 
 .view-frame.ng-leave {
-  -webkit-animation: 0.5s fade-out;
-  -moz-animation: 0.5s fade-out;
-  -o-animation: 0.5s fade-out;
-  animation: 0.5s fade-out;
+  -webkit-animation: 0.3s fade-out;
+  -moz-animation: 0.3s fade-out;
+  -o-animation: 0.3s fade-out;
+  animation: 0.3s fade-out;
   z-index: 99;
 }
 

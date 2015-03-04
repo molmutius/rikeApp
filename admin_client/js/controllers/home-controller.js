@@ -21,5 +21,5 @@ appController.controller('MainController', ['$scope', '$location',
 // Landing-Page
 appController.controller('HomeCtrl', ['$scope',
   function($scope) {
-    $scope.text = 'Erich';
+    $scope.name = 'Rike';
 }]);
