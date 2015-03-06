@@ -25,17 +25,24 @@ app.use(passport.session());
 app.use(flash());
 
 // body parser 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-// statics
+
+// admin statics
 app.use('/css', express.static(__dirname + '/admin_client/css'));
 app.use('/js', express.static(__dirname + '/admin_client/js'));
+// front statics
+app.use('/front/css', express.static(__dirname + '/front_client/css'));
+app.use('/front/js', express.static(__dirname + '/front_client/js'));
+// global statics
 app.use('/bower', express.static(__dirname + '/bower_components/'));
 app.use('/uploads', express.static(__dirname + '/uploads/'));
 app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
 // REST API PICTURES
 app.get('/api/pics', pictureController.list);
+app.get('/api/pics/:cat', pictureController.listByCategory);
 app.post('/api/pics', isLoggedIn, pictureController.add);
 app.delete('/api/pics/:id', isLoggedIn, pictureController.delete);
 app.post('/api/pics/upload', isLoggedIn, pictureController.upload);
@@ -48,6 +55,9 @@ app.delete('/api/cat/:id', isLoggedIn, categoryController.delete);
 
 // admin routes
 require('./server/routes/admin-routes.js')(app, passport);
+
+// front routes
+require('./server/routes/front-routes.js')(app);
 
 // start server
 var port = 3000;

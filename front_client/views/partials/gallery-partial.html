@@ -1,0 +1,26 @@
+<div ng-controller="GalleryCtrl">
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <div ng-show="loader.loading" class="form-group">
+        <i class="fa fa-cog fa-spin fa-5x"></i>
+      </div>
+    </div>
+
+    <div class="col-md-12" ng-hide="loader.loading">
+      <h2>Es gibt {{pictures.length}} Bilder </h2>
+
+      <div class="picture gallery">
+        <ul class="picture">
+          <li class="col-lg-4 col-md-4 col-sm-4 col-xs-12 picture" ng-repeat="pic in pictures">
+            <img ng-src="../uploads/thumbs/thumb-{{pic.url}}" class="img-responsive thumbnail">
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

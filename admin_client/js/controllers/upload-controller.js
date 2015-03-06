@@ -66,17 +66,18 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
   };
 
   $scope.delPicture = function (pic) {
-    console.log(pic);
+    console.log('Deleting: ' + pic);
     FileService.remove(pic.filename)
     FileService.delete(pic.filename);
   };
 
   $scope.addPicture = function (pic) {
-    // remove this pic from scope so user doesn't click several times
+    console.log('Adding: ' + pic.filename);
+    // remove this pic from scope, so user doesn't click several times
     var index = $scope.pics.indexOf(pic);
     if (index > -1) {
       $scope.pics.splice(index, 1);
-    } 
+    }
     var picture = new Picture();
     picture.caption = pic.caption;
     picture.url = pic.filename;

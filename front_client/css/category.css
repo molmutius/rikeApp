@@ -1,0 +1,15 @@
+.category-style
+ul {         
+    padding:0 0 0 0;
+    margin:0 0 0 0;
+}
+
+.category-style
+ul li {     
+    list-style:none; 
+}
+
+.category-style
+p {
+	font-size:1.5em;
+}
