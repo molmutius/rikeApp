@@ -43,15 +43,15 @@ module.exports.add = function (req, res) {
     if (err) console.log(err);
     var scaleFactor = 0.5;
     if (image.width() > 1080 || image.height() > 1080) {
-      scaleFactor = 0.3;
+      scaleFactor = 0.4;
     } else 
-    if (image.width() > 1600|| image.height() > 1600) {
-      scaleFactor = 0.2;
+    if (image.width() > 1920|| image.height() > 1920) {
+      scaleFactor = 0.3;
     }
     image.batch()
       .scale(scaleFactor)
       .crop(300,300)
-      .writeFile( path.join(rootPath + thumbs + picture.url), "jpg", { quality : 50 }, function (err) {
+      .writeFile( path.join(rootPath + thumbs + picture.url), "jpg", { quality : 70 }, function (err) {
         if (err) console.log('Error writing thumbnail: ' + err);
       });
   });

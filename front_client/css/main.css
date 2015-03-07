@@ -5,13 +5,13 @@ html, body {
 
 .main-content {
   padding-top: 70px;
-  background-color: #6e6f71;
 }
 
 .navbar-fixed-top {
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #6e6f71;
+  border-color: #777;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -20,11 +20,9 @@ html, body {
 
 .view-container {
   position: relative;
-  background-color: #6e6f71;
 }
 
 .container {
-    background-color: #6e6f71;
 }
 
 .centered {
@@ -33,6 +31,21 @@ html, body {
     display: block;
 }
 
-.navbar-nav {
+.navbar-nav a{
 	color: #fff;
 }
+@media (min-width: 768px){
+    .navbar-nav {
+        margin: 0 auto;
+        display: table;
+        table-layout: auto;
+        float: none;
+        width: 100%;
+    }
+    .navbar-nav>li {
+        display: table-cell;
+        float: none;
+        text-align: center;
+        color: #fff;
+    }
+} 

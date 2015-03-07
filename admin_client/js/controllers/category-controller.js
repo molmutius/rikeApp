@@ -12,6 +12,8 @@ angular.module('rikeAppCategoryController', ['rikeAppService', 'ngAnimate', 'mgc
       $scope.categories = result;
     });
 
+    $scope.popover = {};
+
     $scope.addCategory = function (cat) {
       //$scope.categories.push(cat);
       CategoryService.add(cat, function(result) {
@@ -23,6 +25,7 @@ angular.module('rikeAppCategoryController', ['rikeAppService', 'ngAnimate', 'mgc
         } else {
           $scope.categories.push(result);
           $scope.cat = '';
+          delete $scope.popover;
         }
       });
     };
