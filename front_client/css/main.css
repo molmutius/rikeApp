@@ -10,7 +10,6 @@ html, body {
 .navbar-fixed-top {
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #6e6f71;
   border-color: #777;
 }
 
@@ -31,9 +30,6 @@ html, body {
     display: block;
 }
 
-.navbar-nav a{
-	color: #fff;
-}
 @media (min-width: 768px){
     .navbar-nav {
         margin: 0 auto;
@@ -43,9 +39,17 @@ html, body {
         width: 100%;
     }
     .navbar-nav>li {
-        display: table-cell;
+        /*display: table-cell;*/ /* stretch links over whole width */
+        display: inline-block;   /* no stretch */
         float: none;
         text-align: center;
-        color: #fff;
     }
-} 
+    .navbar > .container {
+        text-align: center;
+    }
+    .collapse.navbar-collapse {
+        width: auto;
+        margin: 0 auto;
+        clear: none;
+    }
+}
