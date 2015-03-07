@@ -33,6 +33,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/css', express.static(__dirname + '/admin_client/css'));
 app.use('/js', express.static(__dirname + '/admin_client/js'));
 // front statics
+app.use('/front/img', express.static(__dirname + '/front_client/img'));
 app.use('/front/css', express.static(__dirname + '/front_client/css'));
 app.use('/front/js', express.static(__dirname + '/front_client/js'));
 // global statics
