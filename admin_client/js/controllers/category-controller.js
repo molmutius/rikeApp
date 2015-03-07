@@ -1,5 +1,5 @@
 // Category
-angular.module('rikeAppCategoryController', ['rikeAppService'])
+angular.module('rikeAppCategoryController', ['rikeAppService', 'ngAnimate', 'mgcrea.ngStrap'])
 
 .controller('CategoryCtrl', ['$scope', '$resource', 'CategoryService',
   function($scope, $resource, CategoryService) {
@@ -15,8 +15,15 @@ angular.module('rikeAppCategoryController', ['rikeAppService'])
     $scope.addCategory = function (cat) {
       //$scope.categories.push(cat);
       CategoryService.add(cat, function(result) {
-        $scope.categories.push(result);
-        $scope.cat = '';
+        if (result.tooManyCatsMessage) {
+          $scope.popover = {
+            "title": "Achtung",
+            "content": "Maximal 8 Kategorien"
+          };
+        } else {
+          $scope.categories.push(result);
+          $scope.cat = '';
+        }
       });
     };
 
