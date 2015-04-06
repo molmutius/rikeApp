@@ -41,12 +41,12 @@ module.exports.add = function (req, res) {
   // make thumbnail
   lwip.open( path.join(rootPath + tmp + picture.url), function (err, image) {
     if (err) console.log(err);
-    var scaleFactor = 0.5;
+    var scaleFactor = 0.6;
     if (image.width() > 1080 || image.height() > 1080) {
-      scaleFactor = 0.4;
+      scaleFactor = 0.5;
     } else 
     if (image.width() > 1920|| image.height() > 1920) {
-      scaleFactor = 0.3;
+      scaleFactor = 0.4;
     }
     image.batch()
       .scale(scaleFactor)
@@ -119,4 +119,18 @@ module.exports.listByCategory = function (req, res) {
   })
   //res.writeHead(200);
   //res.end("No pictures found.");
+}
+
+module.exports.listByCategoryPaginated = function (req, res) {
+  var cat = req.params.cat;
+  var page = req.params.page;
+  Picture.count({category: cat}, function (err, count) {
+    if (err) console.log(err);
+    if (count > 0) {
+      Picture.find({category: cat}, {limit: 5, skip:5*page}, function (err, results) {
+        if (err) console.log(err);
+        res.json(results);
+      })
+    }
+  });
 }

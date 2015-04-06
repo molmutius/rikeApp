@@ -4,8 +4,12 @@ html, body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.logo img{
+  height: 50px;
+}
+
 .main-content {
-  padding-top: 70px;
+  padding-top: 80px;
 }
 
 .navbar-fixed-top {
@@ -24,6 +28,7 @@ html, body {
 }
 
 .container {
+  width: 100%;
 }
 
 .centered {
