@@ -8,7 +8,7 @@ appController.controller('GalleryCtrl', ['$scope', '$routeParams', '$resource',
        loading : true,
     };
 
-    allPictures = [];
+    $scope.allPictures = [];
     pageSize = 10;
     totalPages = 0;
     currentPage = 0;
@@ -17,11 +17,11 @@ appController.controller('GalleryCtrl', ['$scope', '$routeParams', '$resource',
     var Picture = $resource('/api/pics/' + $routeParams.category);
 
     Picture.query(function (results) {
-      allPictures = results;
-      totalPages = (allPictures.length + pageSize - 1) / pageSize;
+      $scope.allPictures = results;
+      totalPages = ($scope.allPictures.length + pageSize - 1) / pageSize;
       totalPages = Math.ceil(totalPages) - 1;
       console.log(totalPages);
-      $scope.pictures = allPictures.slice(0, pageSize);
+      $scope.pictures = $scope.allPictures.slice(0, pageSize);
       $scope.loader.loading = false;
     });
 
@@ -37,6 +37,7 @@ appController.controller('GalleryCtrl', ['$scope', '$routeParams', '$resource',
     $scope.showPrev = function () {
         // previous page
         if ((($scope._Index - 1) % pageSize ) + 1 == 0) {
+            $scope.loader.loading = true;
             if (currentPage - 1 < 0) {
                 currentPage = totalPages - 1;
                 // fix for only one picture
@@ -47,8 +48,9 @@ appController.controller('GalleryCtrl', ['$scope', '$routeParams', '$resource',
                 currentPage--;
             }
             console.log("Page " + currentPage);
-            $scope.pictures = allPictures.slice(currentPage*pageSize, currentPage*pageSize + pageSize);
+            $scope.pictures = $scope.allPictures.slice(currentPage*pageSize, currentPage*pageSize + pageSize);
             $scope._Index = $scope.pictures.length - 1;
+            $scope.loader.loading = false;
         // same page
         } else {
             $scope._Index = ($scope._Index > 0) ? --$scope._Index : $scope.pictures.length - 1;
@@ -61,14 +63,16 @@ appController.controller('GalleryCtrl', ['$scope', '$routeParams', '$resource',
     // show next image
     $scope.showNext = function () {
         if (($scope._Index + 1) % $scope.pictures.length == 0) {
+            $scope.loader.loading = true;
             if (currentPage + 1 >= totalPages) {
                 currentPage = 0;
             } else {
                 currentPage++;
             }
             console.log("Page " + currentPage);
-            $scope.pictures = allPictures.slice(currentPage*pageSize, currentPage*pageSize + pageSize);
+            $scope.pictures = $scope.allPictures.slice(currentPage*pageSize, currentPage*pageSize + pageSize);
             $scope._Index = 0;
+            $scope.loader.loading = false;
         } else {
             $scope._Index = ($scope._Index < pageSize) ? ++$scope._Index : 0;
         }

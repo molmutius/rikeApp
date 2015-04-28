@@ -4,10 +4,6 @@ html, body {
   font-family: 'Open Sans', sans-serif;
 }
 
-.logo img{
-  height: 50px;
-}
-
 .main-content {
   padding-top: 80px;
 }
@@ -35,6 +31,8 @@ html, body {
     float: none;
     margin: 0 auto;
     display: block;
+    width: 100%;
+    text-align: center;
 }
 
 @media (min-width: 768px){
@@ -62,9 +60,9 @@ html, body {
 }
 
 
-
 .navbar-default {
   background-color: #6e6f71;
+  background: rgba(110, 111, 113, 0.8);
   border-color: #7a7a7a;
   letter-spacing: 0.3em;
   font-family: 'Open Sans', sans-serif;
@@ -122,5 +120,13 @@ html, body {
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #ebebeb;
     background-color: #7a7a7a;
+  }
+  .navbar-nav>li {
+        float: none;
+        text-align: center;
+  }
+  .small > img{
+    height: 60px; 
+    margin-top: -20px;
   }
 }
