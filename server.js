@@ -13,7 +13,7 @@ var path                  = require('path');
 // connect mongodb
 var ip = 'localhost';
 if (process.env.IP) {
-  ip = 'process.env.IP';
+  ip = process.env.IP;
 }
 mongoose.connect('mongodb://'+ ip +':27017/rikeApp');
 
