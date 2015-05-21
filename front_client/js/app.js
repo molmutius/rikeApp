@@ -3,6 +3,7 @@ var rikeFrontApp = angular.module('rikeFrontApp', [
 	'ngResource',
 	'ngRoute',
 	'ngAnimate',
+	'ap.fotorama',
 	'rikeAppService',
 	'rikeFrontAppHomeController',
 	'rikeFrontAppGalleryController',

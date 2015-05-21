@@ -1,97 +1,56 @@
-var appController = angular.module('rikeFrontAppGalleryController', ['ngAnimate', 'ngTouch'])
+var appController = angular.module('rikeFrontAppGalleryController', ['ngAnimate', 'ngTouch', 'ap.fotorama']);
 
 // Nav-Header
 appController.controller('GalleryCtrl', ['$scope', '$routeParams', '$resource',
   function($scope, $routeParams, $resource) {
 
     $scope.loader = {
-       loading : true,
+      loading : true,
     };
 
-    $scope.allPictures = [];
-    pageSize = 10;
-    totalPages = 0;
-    currentPage = 0;
-    $scope.pictures = [];
+    $scope.options = {
+      width: '100%',
+      height: 400,
+      loop: true,
+      keyboard: true,
+      nav: 'thumbs'
+    }
+
+    $scope.items = [];
+
+    $scope.fotoramaoptions = {  fit: 'scaledown', 
+                                width: '100%', 
+                                maxheight: 800,
+                                loop: true,
+                                keyboard: true, 
+                                nav: 'thumbs', 
+                                transition: 'slide', 
+                                allowfullscreen: true, 
+                                spinner: {
+                                  lines: 13,
+                                  color: 'rgba(255, 255, 255, .75)'
+                                },
+                                thumbborderwidth: 1,
+                                thumbmargin: 5 };
 
     var Picture = $resource('/api/pics/' + $routeParams.category);
 
     Picture.query(function (results) {
-      $scope.allPictures = results;
-      totalPages = ($scope.allPictures.length + pageSize - 1) / pageSize;
-      totalPages = Math.ceil(totalPages) - 1;
-      console.log(totalPages);
-      $scope.pictures = $scope.allPictures.slice(0, pageSize);
       $scope.loader.loading = false;
+      
+      results.forEach(function(entry, i) {
+        var item = {id: i, 
+                    pos: i, 
+                    active: 0, 
+                    full: '../uploads/' + entry.url, 
+                    img: '../uploads/' + entry.url, 
+                    thumb: '../uploads/thumbs/thumb-' + entry.url, 
+                    html: '', 
+                    caption: entry.caption};
+        $scope.items.push(item);
+
+      });
+      
     });
-
-    // initial image index
-    $scope._Index = 0;
-
-    // if a current image is the same as requested image
-    $scope.isActive = function (index) {
-        return $scope._Index === index;
-    };
-
-    // show prev image
-    $scope.showPrev = function () {
-        // previous page
-        if ((($scope._Index - 1) % pageSize ) + 1 == 0) {
-            $scope.loader.loading = true;
-            if (currentPage - 1 < 0) {
-                currentPage = totalPages - 1;
-                // fix for only one picture
-                if (currentPage < 0) {
-                  currentPage = 0;
-                }
-            } else {
-                currentPage--;
-            }
-            console.log("Page " + currentPage);
-            $scope.pictures = $scope.allPictures.slice(currentPage*pageSize, currentPage*pageSize + pageSize);
-            $scope._Index = $scope.pictures.length - 1;
-            $scope.loader.loading = false;
-        // same page
-        } else {
-            $scope._Index = ($scope._Index > 0) ? --$scope._Index : $scope.pictures.length - 1;
-        }
-        console.log("Index " + $scope._Index);
-
-        //$scope._Index = ($scope._Index > 0) ? --$scope._Index : $scope.pictures.length - 1;
-    };
-
-    // show next image
-    $scope.showNext = function () {
-        if (($scope._Index + 1) % $scope.pictures.length == 0) {
-            $scope.loader.loading = true;
-            if (currentPage + 1 >= totalPages) {
-                currentPage = 0;
-            } else {
-                currentPage++;
-            }
-            console.log("Page " + currentPage);
-            $scope.pictures = $scope.allPictures.slice(currentPage*pageSize, currentPage*pageSize + pageSize);
-            $scope._Index = 0;
-            $scope.loader.loading = false;
-        } else {
-            $scope._Index = ($scope._Index < pageSize) ? ++$scope._Index : 0;
-        }
-        console.log("Index " + $scope._Index);
-    };
-
-    // show a certain image
-    $scope.showPhoto = function (index) {
-        $scope._Index = index;
-    };
-
-    // navigate via keyboard shortkey
-    $scope.keyControl = function($event) {
-      if ($event.which == 37) {
-          $scope.showPrev();
-      }
-      if ($event.which == 39) {
-          $scope.showNext();
-      }
-    };
 
 }]);

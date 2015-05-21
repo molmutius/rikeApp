@@ -2,6 +2,7 @@
 
   <div class="row">
 
+
     <div class="col-xs-12 centered">
       <div ng-show="loader.loading" class="form-group">
         <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
@@ -11,7 +12,10 @@
     <div class="col-lg-2"></div>
 
     <div class="col-lg-8" ng-hide="loader.loading">
-        
+
+    <div ap-fotorama="fotoramaoptions" ng-model="items"></div>
+      
+      <!-- old fallback
       <div class="row">
         <div class="slider">
           <img ng-repeat="pic in pictures" class="view-frame img-responsive" ng-swipe-right="showPrev()" ng-swipe-left="showNext()" ng-show="isActive($index)" ng-src="../uploads/{{pic.url}}" />
@@ -27,6 +31,7 @@
           </li>
         </ul>
       </div>
+      -->
 
     </div>
 

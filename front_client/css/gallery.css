@@ -111,3 +111,37 @@
 .noOutline {
    outline:none;
 }
+
+/**
+ * Fotorama Custom Style
+ */
+
+.fotorama__arr {
+    background: url(/front/img/arrows.png) no-repeat;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+.fotorama__arr--next {
+    background-position: -70px -40px;
+}
+
+.fotorama__arr--prev {
+    background-position: -10px -40px;
+}
+
+.fotorama__thumb-border {
+    border-color: #fff;
+    background-image: linear-gradient(to bottom right,rgba(255,255,255,.25),rgba(64,64,64,.1));
+}
+
+.fotorama__fullscreen-icon {
+    /*
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
+    background: url(/front/img/full-screen.png) no-repeat;
+    background-position: 0px px;
+    */
+    
+}
