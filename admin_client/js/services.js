@@ -71,3 +71,35 @@ appService.factory('CategoryService', ['$resource',
 		},
 	};
 }]);
+
+appService.factory('SubcategoryService', ['$resource',
+ function($resource) {
+
+	var Subcategory = $resource('/api/cat/subs');
+ 	var cats = [];
+
+	return {
+		get: function (callback) {
+			Subcategory.query().$promise.then(function (results) {
+				cats = results;
+				callback(cats);	
+				console.log(cats);
+			});
+		},
+		add: function (_name, ubercategory, callback) {
+			var subcategory = new Subcategory();
+			subcategory.name = _name;
+			subcategory.ubercategory = ubercategory;
+			subcategory.$save(function (result) {
+				callback(result);
+			});
+		},
+		remove: function (_cat) {
+			var DelCategory = $resource('/api/cat/subs/:id');
+			var category = new DelCategory( { "_id" : _cat._id });
+			category.$remove( {id : _cat._id}, function (err, result) {
+				if (err) console.log(err);
+		    });
+		},
+	};
+}]);

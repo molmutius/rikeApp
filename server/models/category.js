@@ -1,5 +1,8 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-module.exports = mongoose.model('Category', {
-  value: String
+var categorySchema = Schema({
+	value: String
 });
+
+module.exports = mongoose.model('Category', categorySchema);

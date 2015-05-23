@@ -15,7 +15,6 @@ angular.module('rikeAppCategoryController', ['rikeAppService', 'ngAnimate', 'mgc
     $scope.popover = {};
 
     $scope.addCategory = function (cat) {
-      //$scope.categories.push(cat);
       CategoryService.add(cat, function(result) {
         if (result.tooManyCatsMessage) {
           $scope.popover = {

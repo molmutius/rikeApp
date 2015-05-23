@@ -4,6 +4,7 @@ var bodyParser            = require('body-parser');
 var mongoose              = require('mongoose');
 var pictureController     = require('./server/controllers/picture-controller');
 var categoryController    = require('./server/controllers/category-controller');
+var subcategoryController = require('./server/controllers/subcategory-controller');
 var passport              = require('passport');
 var session               = require('express-session');
 var flash                 = require('connect-flash');
@@ -50,10 +51,13 @@ app.delete('/api/pics/:id', isLoggedIn, pictureController.delete);
 app.post('/api/pics/upload', isLoggedIn, pictureController.upload);
 app.delete('/api/pics/unlink/:filename', isLoggedIn, pictureController.deleteByFilename);
 
-// REST API CATEGORY
+// REST API CATEGORY + SUBCATEGORY
 app.get('/api/cat', categoryController.list);
 app.post('/api/cat', isLoggedIn, categoryController.add);
 app.delete('/api/cat/:id', isLoggedIn, categoryController.delete);
+app.get('/api/cat/subs', subcategoryController.listSubcategories);
+app.post('/api/cat/subs', subcategoryController.addSubcategotery);
+app.delete('/api/cat/subs/:id', isLoggedIn, subcategoryController.delete);
 
 // admin routes
 require('./server/routes/admin-routes.js')(app, passport);

@@ -1,19 +1,19 @@
 <link rel="stylesheet" type="text/css" href="/css/category.css">
 
-<div ng-controller="CategoryCtrl">
+<div ng-controller="SubcategoryCtrl">
   <div class="row">
 
     <div class="col-md-9">
       <div class="row">
-         <h2>Es gibt {{categories.length}} Kategorien</h2>
+        <h2 >Es gibt {{subcategories.length}} Unterkategorien in {{ubercategory}}</h2>
       </div>
 
       <div>
         <ul class="category-style">
-          <li class="category-style" ng-repeat="category in categories | filter:query">
+          <li class="category-style" ng-repeat="subcategory in subcategories | filter:query">
             <p>
-              <a href="/admin/#/category/{{category.value}}">{{category.value}}</a>
-              <a ng-click="delCategory(category)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+              {{subcategory.name}}
+              <a ng-click="delCategory(subcategory)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
             </p>
           </li>
         </ul>
@@ -21,12 +21,12 @@
     </div>
 
     <div class="col-md-3">
-      <h2>Kategorie Hinzufügen</h2>
+      <h2>Unterkategorie Hinzufügen</h2>
 
       <div class="input-group" data-placement="bottom" data-animation="am-flip-x" bs-popover="popover">
-        <input type="text" class="form-control" placeholder="Name..." ng-model="cat">
+        <input type="text" class="form-control" placeholder="Name..." ng-model="subcat">
         <span class="input-group-btn">
-          <a type="submit" ng-click="addCategory(cat)" class="btn btn-success"><i class="fa fa-plus"></i></a>
+          <a type="submit" ng-click="addCategory(subcat, ubercategory)" class="btn btn-success"><i class="fa fa-plus"></i></a>
         </span>
       </div>
 

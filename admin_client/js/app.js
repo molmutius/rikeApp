@@ -9,6 +9,7 @@ var rikeApp = angular.module('rikeApp', [
 	'rikeAppPictureController',
 	'rikeAppUploadController',
 	'rikeAppCategoryController',
+	'rikeAppSubcategoryController'
 ]);
 
 // routes
@@ -30,6 +31,10 @@ rikeApp.config(['$routeProvider',
 			when('/category', {
 				templateUrl: 'views/partials/category-partial',
 				controller: 'CategoryCtrl'
+			}).
+			when('/category/:sub', {
+				templateUrl: 'views/partials/subcategory-partial',
+				controller: 'SubcategoryCtrl'
 			}).
 			otherwise({ 
 				reditrectTo : "/" 
