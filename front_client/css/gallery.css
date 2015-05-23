@@ -137,11 +137,12 @@
 }
 
 .fotorama__fullscreen-icon {
-    /*
-    filter: invert(100%);
-    -webkit-filter: invert(100%);
+    width: 60px;
+    height: 80px;
     background: url(/front/img/full-screen.png) no-repeat;
     background-position: 0px px;
-    */
-    
+}
+
+.fotorama--fullscreen .fotorama__fullscreen-icon {
+    background-position: 0px -0px;
 }
