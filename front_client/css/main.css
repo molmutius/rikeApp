@@ -8,20 +8,12 @@ html, body {
   padding-top: 80px;
 }
 
-.navbar-fixed-top {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-color: #777;
-  background-color: #6e6f71;
-}
-
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: hidden !important;
 }
 
 .view-container {
   position: relative;
-  top: 10px;
 }
 
 .container {
@@ -71,11 +63,13 @@ html, body {
 
 
 .navbar-default {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-color: #7a7a7a;
   background-color: #6e6f71;
   background: rgba(110, 111, 113, 0.8);
-  border-color: #7a7a7a;
-  letter-spacing: 0.3em;
-  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  font-family: 'Julius Sans One', sans-serif;
 }
 .navbar-default .navbar-brand {
   color: #ffffff;
