@@ -137,13 +137,13 @@
 }
 
 .fotorama__fullscreen-icon {
-    width: 60px;
+    width: 50px;
     height: 80px;
     background: url(/front/img/full-screen.png) no-repeat;
-    background-position: 0px px;
-    
+    background-position: 0px 0px;
+
 }
 
 .fotorama--fullscreen .fotorama__fullscreen-icon {
-    background-position: 0px -0px;
+    background-position: 0px 0px;
 }
