@@ -4,6 +4,17 @@ html, body {
   font-family: 'Open Sans', sans-serif;
 }
 
+a {
+  text-transform: uppercase;
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+a:hover {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: 'Julius Sans One', sans-serif;
+}
+
 .main-content {
   padding-top: 80px;
 }

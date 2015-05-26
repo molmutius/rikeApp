@@ -16,14 +16,23 @@ ul li img {
     object-fit: cover;
 }
 
+.background {
+	background: url(/front/img/placeholder_large.jpg);
+	height: 340px;
+  	background-size:cover;
+}
+
 .overlay    {  
 	background:rgba(0,0,0,.75);
    	text-align:center;
-   	padding:45px 0 66px 0;
+   	height: 100%;
+   	padding:160px 0 0 0;
    	opacity:0;
     -webkit-transition: opacity .25s ease;
 	-moz-transition: opacity .25s ease;
 }
 
-.category:hover .overlay {
-               opacity:1;}
+.background:hover .overlay {
+    opacity:1;
+    
+}
