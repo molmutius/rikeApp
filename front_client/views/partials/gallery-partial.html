@@ -2,36 +2,11 @@
 
   <div class="row">
 
-
-    <div class="col-xs-12 centered">
-      <div ng-show="loader.loading" class="form-group">
-        <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
-      </div>
-    </div>
-
     <div class="col-lg-2"></div>
 
-    <div class="col-lg-8" ng-hide="loader.loading">
+    <div class="col-lg-8">
 
-    <div ap-fotorama="fotoramaoptions" ng-model="items"></div>
-      
-      <!-- old fallback
-      <div class="row">
-        <div class="slider">
-          <img ng-repeat="pic in pictures" class="view-frame img-responsive" ng-swipe-right="showPrev()" ng-swipe-left="showNext()" ng-show="isActive($index)" ng-src="../uploads/{{pic.url}}" />
-          <a class="arrow prev" ng-click="showPrev()"><i class="fa fa-chevron-left fa-3x pull-down left"></i></a>
-          <a class="arrow next" ng-click="showNext()"><i class="fa fa-chevron-right fa-3x pull-down right"></i></a>
-        </div>
-      </div>
-
-      <div class="row">
-        <ul class="gallery-nav picture">
-          <li ng-repeat="pic in pictures" ng-class="{'active':isActive($index)}">
-              <img ng-src="../uploads/thumbs/thumb-{{pic.url}}" alt="{{pic.caption}}" title="{{pic.caption}}" ng-click="showPhoto($index);" />
-          </li>
-        </ul>
-      </div>
-      -->
+      <div ap-fotorama="fotoramaoptions" ng-model="items"></div>
 
     </div>
 
