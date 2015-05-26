@@ -17,6 +17,9 @@ rikeFrontApp.config(['$routeProvider',
 				templateUrl: 'views/partials/home-partial',
 				controller: 'HomeCtrl'
 			}).
+			when('/:category', {
+				templateUrl: 'views/partials/category-partial',
+			}).
 			when('/pics/:category', {
 				templateUrl: 'views/partials/gallery-partial',
 			}).

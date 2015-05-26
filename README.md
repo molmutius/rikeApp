@@ -1,3 +1,3 @@
 #RikeApp.
 
-Photographer-page backend in development.
+Photographer-page back+frontend in development.

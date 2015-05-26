@@ -17,7 +17,6 @@ module.exports.addSubcategotery = function (req, res) {
 }
 
 module.exports.listSubcategories = function (req, res) {
-  console.log(req.params.ubercat);
   Category.find({ubercategory: req.params.ubercat}, function (err, results) {
     if (err) console.log(err);
     res.json(results);

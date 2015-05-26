@@ -1,10 +1,14 @@
 // Upload
 angular.module('rikeAppUploadController', ['rikeAppService'])
 
-.controller('UploadCtrl', ['$scope', '$upload', '$resource', 'FileService', 'CategoryService',
-  function ($scope, $upload, $resource, FileService, CategoryService) {
+.controller('UploadCtrl', ['$scope', '$upload', '$resource', 'FileService', 'CategoryService', 'SubcategoryService',
+  function ($scope, $upload, $resource, FileService, CategoryService, SubcategoryService) {
+
+  $scope.noCategorySet = true;
 
   var categories = [];
+  $scope.subcategoryOptions = [];
+  
   CategoryService.get(function (result) {
     categories = result;
     $scope.categoryOptions = [{ name: '0', value: '' }];
@@ -12,6 +16,22 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
       $scope.categoryOptions.push({ name: (i + 1), value: categories[i].value});
     }
     $scope.category = $scope.categoryOptions[0];
+
+    // disable subcategory picker if no category is set
+    $scope.$watch('category', function () {
+      if ($scope.category != $scope.categoryOptions[0]) {
+        // get subcategories
+        $scope.noCategorySet = false;
+        SubcategoryService.get($scope.category, function (result) {
+          $scope.subcategoryOptions = [{ name: ''}];
+          for (var i = 0; i < result.length; i++) {
+            $scope.subcategoryOptions.push(result[i]);
+          }
+        });
+      } else {
+        $scope.noCategorySet = true;
+      }
+    })
   });
 
   $scope.$watch('files', function () {
@@ -34,7 +54,8 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
         $upload.upload({
           url: '/api/pics/upload',
           fields: {
-              'category': $scope.category.value
+              'category': $scope.category.value,
+              'subcategory' : $scope.subcategory.value,
           },
           file: file
         }).progress(function (evt) {
@@ -82,6 +103,7 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
     picture.caption = pic.caption;
     picture.url = pic.filename;
     picture.category = pic.category;
+    picture.subcategory = pic.subcategory;
     picture.$save(function (result) {
       FileService.remove(picture.url)
     });

@@ -20,8 +20,16 @@
                 <label>Kategorie</label>
                 <select class="form-control" ng-model="pic.category" ng-options="opt.value as opt.value for opt in categoryOptions"></select>
               </div>
+              <div class="form-group">  
+                <label>Unterkategorie</label>
+                <select class="form-control" ng-model="pic.subcategory" ng-options="opt.name as opt.name for opt in subcategoryOptions"></select>
+              </div>
+              <div class="form-group">  
+                <label>Vorschaubild</label>
+                <input type="checkbox" ng-model="pic.isPreview" />
+              </div>
               <div class="form-group">
-                <a ng-click="addPicture(pic)" class="btn pull-right btn-success"><i class="fa fa-check"></i></a>
+                <a ng-click="addPicture(pic)" ng-disabled="!pic.category || !pic.subcategory" class="btn pull-right btn-success"><i class="fa fa-check"></i></a>
                 <a ng-click="delPicture(pic)" class="btn pull-right btn-danger"><i class="fa fa-trash"></i></a>
               </div>
             </form>
@@ -38,6 +46,10 @@
           <div class="form-group">
             <label>Kategorie für alle Bilder vorher festlegen (optional)</label><br>
             <select type="text" class="form-control" ng-model="category" ng-options="opt as opt.value for opt in categoryOptions"></select>
+          </div>
+          <div class="form-group">
+            <label>Unterkategorie für alle Bilder vorher festlegen (optional)</label><br>
+            <select type="text" class="form-control" ng-model="subcategory" ng-options="opt as opt.name for opt in subcategoryOptions" ng-disabled="noCategorySet"></select>
           </div>
           <div class="form-group">
             <label>Bild(er) von Festplatte wählen</label><br>

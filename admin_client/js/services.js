@@ -4,10 +4,11 @@ appService.service('FileService', ['$resource',
  function($resource) {
 	var files = [];
 
-	function FileObject (_filename, _caption, _category) {
+	function FileObject (_filename, _caption, _category, _subcategory) {
 		this.filename = _filename;
 		this.caption = _caption;
 		this.category = _category;
+		this.subcategory = _subcategory;
 	};
 
 	function objectFindByKey(array, key, value) {
@@ -23,7 +24,7 @@ appService.service('FileService', ['$resource',
 		get: function () {
 			return files;
 		},
-		add: function (_file, _caption, _category) {		
+		add: function (_file, _caption, _category, _subcategory) {		
 			files.push(new FileObject(_file, _caption, _category));
 		},
 		remove: function (_file) {
@@ -72,15 +73,14 @@ appService.factory('CategoryService', ['$resource',
 	};
 }]);
 
-appService.service('SubcategoryService', ['$resource', '$routeParams',
- function($resource, $routeParams) {
+appService.service('SubcategoryService', ['$resource',
+ function($resource) {
 
 	return {
 		get: function (ubercat, callback) {
-			Subcategory = $resource('/api/cat/subs/' + $routeParams.sub);
+			Subcategory = $resource('/api/cat/subs/' + ubercat.value);
 			Subcategory.query().$promise.then(function (results) {
 				callback(results);	
-				console.log(results);
 			});
 		},
 		add: function (_name, ubercategory, callback) {
