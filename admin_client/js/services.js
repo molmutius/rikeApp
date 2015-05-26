@@ -42,7 +42,7 @@ appService.service('FileService', ['$resource',
 	};
 }]);
 
-appService.factory('CategoryService', ['$resource',
+appService.factory('CategoryService', ['$resource', 
  function($resource) {
 
 	var Category = $resource('/api/cat');
@@ -72,22 +72,20 @@ appService.factory('CategoryService', ['$resource',
 	};
 }]);
 
-appService.factory('SubcategoryService', ['$resource',
- function($resource) {
-
-	var Subcategory = $resource('/api/cat/subs');
- 	var cats = [];
+appService.service('SubcategoryService', ['$resource', '$routeParams',
+ function($resource, $routeParams) {
 
 	return {
-		get: function (callback) {
+		get: function (ubercat, callback) {
+			Subcategory = $resource('/api/cat/subs/' + $routeParams.sub);
 			Subcategory.query().$promise.then(function (results) {
-				cats = results;
-				callback(cats);	
-				console.log(cats);
+				callback(results);	
+				console.log(results);
 			});
 		},
 		add: function (_name, ubercategory, callback) {
-			var subcategory = new Subcategory();
+			var Category = $resource('/api/cat/subs');
+			var subcategory = new Category();
 			subcategory.name = _name;
 			subcategory.ubercategory = ubercategory;
 			subcategory.$save(function (result) {

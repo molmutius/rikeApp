@@ -4,8 +4,6 @@ angular.module('rikeAppCategoryController', ['rikeAppService', 'ngAnimate', 'mgc
 .controller('CategoryCtrl', ['$scope', '$resource', 'CategoryService',
   function($scope, $resource, CategoryService) {
     
-    var Category = $resource('/api/cat');
-
     $scope.categories = [];
 
     CategoryService.get( function (result) {

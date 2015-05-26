@@ -4,12 +4,10 @@ angular.module('rikeAppSubcategoryController', ['rikeAppService', 'ngAnimate', '
 .controller('SubcategoryCtrl', ['$scope', '$resource', 'SubcategoryService', '$routeParams',
   function($scope, $resource, SubcategoryService, $routeParams) {
     
-    var Category = $resource('/api/cat/subs');
-
     $scope.ubercategory = $routeParams.sub;
     $scope.subcategories = [];
 
-    SubcategoryService.get( function (result) {
+    SubcategoryService.get($scope.ubercategory, function (result) {
       $scope.subcategories = result;
     });
 
@@ -25,7 +23,6 @@ angular.module('rikeAppSubcategoryController', ['rikeAppService', 'ngAnimate', '
           };
         } else {
           $scope.subcategories.push(result);
-          $scope.cat = 'subcat';
           delete $scope.popover;
         }
       });

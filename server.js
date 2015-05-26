@@ -55,7 +55,7 @@ app.delete('/api/pics/unlink/:filename', isLoggedIn, pictureController.deleteByF
 app.get('/api/cat', categoryController.list);
 app.post('/api/cat', isLoggedIn, categoryController.add);
 app.delete('/api/cat/:id', isLoggedIn, categoryController.delete);
-app.get('/api/cat/subs', subcategoryController.listSubcategories);
+app.get('/api/cat/subs/:ubercat', subcategoryController.listSubcategories);
 app.post('/api/cat/subs', subcategoryController.addSubcategotery);
 app.delete('/api/cat/subs/:id', isLoggedIn, subcategoryController.delete);
 

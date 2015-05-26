@@ -8,6 +8,14 @@ var rootPath = __dirname + '/../../uploads/';
 var thumbs = '/thumbs/thumb-';
 var tmp = '/tmp/';
 
+var JobProcessor = {
+  jobqueue: [],
+  shouldRun: false,
+  doProcess: function() {
+
+  }
+};
+
 var deleteOriginalFile = function (filename) {
   filesystem.exists(path.join(rootPath + thumbs + filename), function(hasThumbnail) {
     if (hasThumbnail) {
@@ -35,9 +43,7 @@ var deleteTempFile = function (filename) {
   });
 }
 
-module.exports.add = function (req, res) {
-  var picture = new Picture(req.body);
-  
+var processPicture = function (picture) {
   // make thumbnail
   lwip.open( path.join(rootPath + tmp + picture.url), function (err, image) {
     if (err) console.log(err);
@@ -79,6 +85,16 @@ module.exports.add = function (req, res) {
         });
       });
   });
+}
+
+module.exports.add = function (req, res) {
+  var picture = new Picture(req.body);
+  JobProcessor.watch('shouldRun', function (id, oldval, newval) {
+    
+    return newval;
+  });
+  JobProcessor.jobqueue.push(picture);
+  JobProcessor.shouldRun = true;
 }
 
 module.exports.list = function (req, res) {
