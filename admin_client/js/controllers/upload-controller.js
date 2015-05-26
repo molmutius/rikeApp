@@ -8,7 +8,7 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
 
   var categories = [];
   $scope.subcategoryOptions = [];
-  
+
   CategoryService.get(function (result) {
     categories = result;
     $scope.categoryOptions = [{ name: '0', value: '' }];
@@ -27,6 +27,7 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
           for (var i = 0; i < result.length; i++) {
             $scope.subcategoryOptions.push(result[i]);
           }
+          $scope.subcategory = $scope.subcategoryOptions[0];
         });
       } else {
         $scope.noCategorySet = true;
@@ -55,7 +56,7 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
           url: '/api/pics/upload',
           fields: {
               'category': $scope.category.value,
-              'subcategory' : $scope.subcategory.value,
+              'subcategory' : $scope.subcategory.name,
           },
           file: file
         }).progress(function (evt) {
@@ -66,7 +67,7 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
           var filename = data.file[0].path.replace(/\\/g,"/");
           filename = filename.split("/");
           filename = filename[filename.length - 1]
-          FileService.add(filename, '', $scope.category.value);
+          FileService.add(filename, '', $scope.category.value, $scope.subcategory.name);
           $scope.loader.loading = false;
         });
       }
@@ -80,6 +81,7 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
       picture.caption = $scope.pics[i].caption;
       picture.url = $scope.pics[i].filename;
       picture.category = $scope.pics[i].category;
+      picture.isPreview = $scope.pics[i].isPreview;
       picture.$save(function (result) {
         FileService.remove(picture.url)
       });
@@ -104,6 +106,7 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
     picture.url = pic.filename;
     picture.category = pic.category;
     picture.subcategory = pic.subcategory;
+    picture.isPreview = pic.isPreview;
     picture.$save(function (result) {
       FileService.remove(picture.url)
     });

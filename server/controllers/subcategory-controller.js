@@ -4,15 +4,11 @@ var Category = require('../models/subcategory');
 module.exports.addSubcategotery = function (req, res) {
   Category.find({}, function (err, results) {
     if (err) console.log(err);
-    if (results.length <= 7) {
-      var category = new Category(req.body);
-      category.save(function (err, result) {
-        if (err) console.log(err);
-        res.json(result);
-      });
-    } else {
-      res.json({ tooManyCatsMessage: "Es sind insgesamt nur 8 Subkategorien erlaubt."});
-    }
+    var category = new Category(req.body);
+    category.save(function (err, result) {
+      if (err) console.log(err);
+      res.json(result);
+    });
   });
 }
 

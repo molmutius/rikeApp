@@ -15,6 +15,7 @@
       <link rel="stylesheet" type="text/css" href="/front/css/main.css">
       <link rel="stylesheet" type="text/css" href="/front/css/gallery.css">
       <link rel="stylesheet" type="text/css" href="/front/css/animations.css">
+      <link rel="stylesheet" type="text/css" href="/front/css/category.css">
 
       <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
       <link href='https://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
@@ -39,7 +40,7 @@
             <ul class="nav navbar-nav">
               <li><img class="hidden-xs logo" src="/front/img/logo.png"></li>
               <li ng-class="{ active: isActive('/')}"><a href="/#/">Home</a></li>
-              <li ng-repeat="cat in categories" ng-class="{ active: isActive('/pics/{{cat.value}}')}"><a href="/#/pics/{{cat.value}}">{{cat.value}}</a></li>
+              <li ng-repeat="cat in categories" ng-class="{ active: isActive('/{{cat.value}}')}"><a href="/#/{{cat.value}}">{{cat.value}}</a></li>
               <li ng-class="{ active: isActive('/Contact')}"><a href="/#/Contact">Contact</a></li>
             </ul>
         </div>
@@ -65,6 +66,7 @@
     <script type="text/javascript" src="/front/js/app.js"></script>
     <script type="text/javascript" src="/front/js/controllers/home-controller.js"></script>
     <script type="text/javascript" src="/front/js/controllers/gallery-controller.js"></script>
+    <script type="text/javascript" src="/front/js/controllers/subcategory-controller.js"></script>
     <script type="text/javascript" src="/js/services.js"></script>
 
   </body>

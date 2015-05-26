@@ -25,7 +25,7 @@ appService.service('FileService', ['$resource',
 			return files;
 		},
 		add: function (_file, _caption, _category, _subcategory) {		
-			files.push(new FileObject(_file, _caption, _category));
+			files.push(new FileObject(_file, _caption, _category, _subcategory));
 		},
 		remove: function (_file) {
 			var index = objectFindByKey(files, 'filename', _file);
@@ -78,7 +78,10 @@ appService.service('SubcategoryService', ['$resource',
 
 	return {
 		get: function (ubercat, callback) {
-			Subcategory = $resource('/api/cat/subs/' + ubercat.value);
+			if (ubercat.value)
+				Subcategory = $resource('/api/cat/subs/' + ubercat.value);
+			else
+				Subcategory = $resource('/api/cat/subs/' + ubercat);
 			Subcategory.query().$promise.then(function (results) {
 				callback(results);	
 			});

@@ -1,15 +1,29 @@
-.category-style
+.category
 ul {         
     padding:0 0 0 0;
     margin:0 0 0 0;
 }
 
-.category-style
+.category
 ul li {     
-    list-style:none; 
+    list-style:none;
+    margin-bottom:25px;
 }
 
-.category-style
-p {
-	font-size:1.5em;
+.category
+ul li img {
+    cursor: pointer; 
+    object-fit: cover;
 }
+
+.overlay    {  
+	background:rgba(0,0,0,.75);
+   	text-align:center;
+   	padding:45px 0 66px 0;
+   	opacity:0;
+    -webkit-transition: opacity .25s ease;
+	-moz-transition: opacity .25s ease;
+}
+
+.category:hover .overlay {
+               opacity:1;}

@@ -13,7 +13,7 @@ var JobProcessor = {
   shouldRun: false,
   setRunStatus: function(value) {
     this.shouldRun = value;
-    if (this.shouldRun) {
+    if (this.shouldRun == true) {
       processQueue();
     };
   }, 
@@ -49,17 +49,13 @@ var deleteTempFile = function (filename) {
 var processPicture = function (picture) {
   // make thumbnail
   lwip.open( path.join(rootPath + tmp + picture.url), function (err, image) {
-    if (err) console.log(err);
-    var scaleFactor = 0.6;
-    if (image.width() > 1080 || image.height() > 1080) {
-      scaleFactor = 0.5;
-    } else 
-    if (image.width() > 1920|| image.height() > 1920) {
-      scaleFactor = 0.4;
-    }
+    if (err) {
+      console.log(err);
+      return;
+    } 
+    var size = calculateAspectRatioFit(image.width(), image.height(), 450, 450);
     image.batch()
-      .scale(scaleFactor)
-      .crop(300,300)
+      .resize(size.width, size.height)
       .writeFile( path.join(rootPath + thumbs + picture.url), "jpg", { quality : 70 }, function (err) {
         if (err) console.log('Error writing thumbnail: ' + err);
       });
@@ -67,16 +63,13 @@ var processPicture = function (picture) {
 
   // make full size
   lwip.open( path.join(rootPath + tmp + picture.url), function (err, image) {
-    // consider aspect ratio
-    if (image.width() > image.height()) {
-      var x = 1920;
-      var y = image.height() * x / image.width();
-    } else {
-      var y = 1920;
-      var x = image.width() * y / image.height();
-    }
+    if (err) {
+      console.log(err);
+      return;
+    } 
+    var size = calculateAspectRatioFit(image.width(), image.height(), 1920, 1920);
     image.batch()
-      .resize(x, y)
+      .resize(size.width, size.height)
       .writeFile( path.join(rootPath + picture.url), "jpg", { quality : 80 }, function (err) {
         if (err) console.log('Error writing thumbnail: ' + err);
         // delete temp
@@ -92,17 +85,20 @@ var processPicture = function (picture) {
   console.log('Done Processing Picture.');
 }
 
+function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
+  var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+  return { width: srcWidth*ratio, height: srcHeight*ratio };
+}
+
 var processQueue = function () {
 // process queue until empty
   if (JobProcessor.shouldRun) {
-    if (JobProcessor.jobqueue.length == 0) {
-      // there are no jobs left
-      JobProcessor.setRunStatus(false);
-    } else {
+    while (JobProcessor.jobqueue.length != 0) {
       // there are jobs left
       console.log("processing ...");
       processPicture(JobProcessor.jobqueue.pop());
     }
+    JobProcessor.setRunStatus(false);
   }
 }
 
@@ -143,25 +139,12 @@ module.exports.upload = function (req, res) {
 }
 
 module.exports.listByCategory = function (req, res) {
-  var cat = req.params.cat;
-  Picture.find({category: cat}, function (err, results) {
+  var cat = req.params.cat.split("+")[0];
+  var sub = req.params.cat.split("+")[1];
+  Picture.find({category: cat, subcategory: sub}, function (err, results) {
     if (err) console.log(err);
     res.json(results);
   })
   //res.writeHead(200);
   //res.end("No pictures found.");
-}
-
-module.exports.listByCategoryPaginated = function (req, res) {
-  var cat = req.params.cat;
-  var page = req.params.page;
-  Picture.count({category: cat}, function (err, count) {
-    if (err) console.log(err);
-    if (count > 0) {
-      Picture.find({category: cat}, {limit: 5, skip:5*page}, function (err, results) {
-        if (err) console.log(err);
-        res.json(results);
-      })
-    }
-  });
 }

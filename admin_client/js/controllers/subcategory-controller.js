@@ -8,6 +8,7 @@ angular.module('rikeAppSubcategoryController', ['rikeAppService', 'ngAnimate', '
     $scope.subcategories = [];
 
     SubcategoryService.get($scope.ubercategory, function (result) {
+      console.log(result);
       $scope.subcategories = result;
     });
 

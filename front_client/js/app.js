@@ -7,6 +7,7 @@ var rikeFrontApp = angular.module('rikeFrontApp', [
 	'rikeAppService',
 	'rikeFrontAppHomeController',
 	'rikeFrontAppGalleryController',
+	'rikeFrontAppSubcategoryController',
 ]);
 
 // routes
@@ -18,9 +19,9 @@ rikeFrontApp.config(['$routeProvider',
 				controller: 'HomeCtrl'
 			}).
 			when('/:category', {
-				templateUrl: 'views/partials/category-partial',
+				templateUrl: 'views/partials/subcategory-partial',
 			}).
-			when('/pics/:category', {
+			when('/pics/:category/:sub', {
 				templateUrl: 'views/partials/gallery-partial',
 			}).
 			otherwise({ 

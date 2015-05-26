@@ -45,7 +45,6 @@ app.use(favicon(path.join(__dirname, 'favicon.ico')));
 // REST API PICTURES
 app.get('/api/pics', pictureController.list);
 app.get('/api/pics/:cat', pictureController.listByCategory);
-app.get('/api/pics/:cat/:page', pictureController.listByCategoryPaginated);
 app.post('/api/pics', isLoggedIn, pictureController.add);
 app.delete('/api/pics/:id', isLoggedIn, pictureController.delete);
 app.post('/api/pics/upload', isLoggedIn, pictureController.upload);

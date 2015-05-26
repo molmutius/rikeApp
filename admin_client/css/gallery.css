@@ -13,7 +13,10 @@ ul li {
 
 .gallery
 ul li img {
-    cursor: pointer;
+    cursor: pointer; 
+    height: 240px;
+    width: 300px;
+    object-fit: cover;
 }
 
 .delete-button {

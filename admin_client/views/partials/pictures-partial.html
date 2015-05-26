@@ -14,8 +14,8 @@
         <ul class="picture">
           <li class="col-lg-4 col-md-4 col-sm-4 col-xs-12 picture" ng-repeat="pic in pictures | filter:query">
             <img ng-src="../uploads/thumbs/thumb-{{pic.url}}" class="img-responsive thumbnail">
-            <i>{{pic.caption}}</i><br>
-            <b>{{pic.category}}</b><br>
+            <div ng-hide="!pic.caption"><i>"{{pic.caption}}"</i><br></div>
+            <b>{{pic.category}}</b> - {{pic.subcategory}}<br>
             <a ng-click="delPicture(pic)" class="delete-button btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
           </li>
         </ul>

@@ -36,7 +36,8 @@ appController.controller('GalleryCtrl', ['$scope', '$routeParams', '$resource',
       thumbmargin: 5 
     };
 
-    var Picture = $resource('/api/pics/' + $routeParams.category);
+    console.log($routeParams);
+    var Picture = $resource('/api/pics/' + $routeParams.category + '+' + $routeParams.sub);
 
     Picture.query(function (results) {
       $scope.loader.loading = false;
