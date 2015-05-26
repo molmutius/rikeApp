@@ -18,23 +18,18 @@ rikeApp.config(['$routeProvider',
 		$routeProvider.
 			when('/', {
 				templateUrl: 'views/partials/home-partial',
-				controller: 'HomeCtrl'
 			}).
 			when('/pictures', {
 				templateUrl: 'views/partials/pictures-partial',
-				controller: 'PictureCtrl'
 			}).
 			when('/upload', {
 				templateUrl: 'views/partials/upload-partial',
-				controller: 'UploadCtrl'
 			}).
 			when('/category', {
 				templateUrl: 'views/partials/category-partial',
-				controller: 'CategoryCtrl'
 			}).
 			when('/category/:sub', {
 				templateUrl: 'views/partials/subcategory-partial',
-				controller: 'SubcategoryCtrl'
 			}).
 			otherwise({ 
 				reditrectTo : "/" 

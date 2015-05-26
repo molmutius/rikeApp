@@ -19,7 +19,6 @@ rikeFrontApp.config(['$routeProvider',
 			}).
 			when('/pics/:category', {
 				templateUrl: 'views/partials/gallery-partial',
-				controller: 'GalleryCtrl'
 			}).
 			otherwise({ 
 				reditrectTo : "/" 
