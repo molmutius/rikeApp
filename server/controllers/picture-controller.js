@@ -11,9 +11,12 @@ var tmp = '/tmp/';
 var JobProcessor = {
   jobqueue: [],
   shouldRun: false,
-  doProcess: function() {
-
-  }
+  setRunStatus: function(value) {
+    this.shouldRun = value;
+    if (this.shouldRun) {
+      processQueue();
+    };
+  }, 
 };
 
 var deleteOriginalFile = function (filename) {
@@ -81,20 +84,32 @@ var processPicture = function (picture) {
         // store in mongo
         picture.save(function (err, result) {
           if (err) console.log(err);
-          res.json(result);
+          //res.json(result);
+          console.log('Done Saving Picture.')
         });
       });
   });
+  console.log('Done Processing Picture.');
+}
+
+var processQueue = function () {
+// process queue until empty
+  if (JobProcessor.shouldRun) {
+    if (JobProcessor.jobqueue.length == 0) {
+      // there are no jobs left
+      JobProcessor.setRunStatus(false);
+    } else {
+      // there are jobs left
+      console.log("processing ...");
+      processPicture(JobProcessor.jobqueue.pop());
+    }
+  }
 }
 
 module.exports.add = function (req, res) {
   var picture = new Picture(req.body);
-  JobProcessor.watch('shouldRun', function (id, oldval, newval) {
-    
-    return newval;
-  });
   JobProcessor.jobqueue.push(picture);
-  JobProcessor.shouldRun = true;
+  JobProcessor.setRunStatus(true);
 }
 
 module.exports.list = function (req, res) {
