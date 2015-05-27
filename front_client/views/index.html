@@ -40,7 +40,7 @@
             <ul class="nav navbar-nav">
               <li><img class="hidden-xs logo" src="/front/img/logo.png"></li>
               <li ng-class="{ active: isActive('/')}"><a href="/#/">Home</a></li>
-              <li ng-repeat="cat in categories" ng-class="{ active: isActive('/{{cat.value}}')}"><a href="/#/{{cat.value}}">{{cat.value}}</a></li>
+              <li ng-repeat="cat in categories" ng-class="{ active: isActive('/show/{{cat.value}}')}"><a href="/#/show/{{cat.value}}">{{cat.value}}</a></li>
               <li ng-class="{ active: isActive('/Contact')}"><a href="/#/Contact">Contact</a></li>
             </ul>
         </div>
