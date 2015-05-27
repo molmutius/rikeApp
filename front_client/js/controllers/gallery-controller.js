@@ -49,7 +49,7 @@ appController.controller('GalleryCtrl', ['$scope', '$routeParams', '$resource',
           active: 0, 
           full: '../uploads/' + entry.url, 
           img: '../uploads/' + entry.url, 
-          thumb: '../uploads/thumbs/thumb-' + entry.url, 
+          thumb: '../uploads/' + entry.url, 
           html: '', 
           caption: entry.caption
         };

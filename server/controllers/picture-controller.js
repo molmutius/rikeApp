@@ -48,6 +48,7 @@ var deleteTempFile = function (filename) {
 
 var processPicture = function (picture, res) {
   // make thumbnail
+  /*
   lwip.open( path.join(rootPath + tmp + picture.url), function (err, image) {
     if (err) {
       console.log(err);
@@ -60,6 +61,7 @@ var processPicture = function (picture, res) {
         if (err) console.log('Error writing thumbnail: ' + err);
       });
   });
+  */
 
   // make full size
   lwip.open( path.join(rootPath + tmp + picture.url), function (err, image) {
@@ -70,7 +72,7 @@ var processPicture = function (picture, res) {
     var size = calculateAspectRatioFit(image.width(), image.height(), 1920, 1920);
     image.batch()
       .resize(size.width, size.height)
-      .writeFile( path.join(rootPath + picture.url), "jpg", { quality : 80 }, function (err) {
+      .writeFile( path.join(rootPath + picture.url), "jpg", { quality : 70 }, function (err) {
         if (err) console.log('Error writing thumbnail: ' + err);
         // delete temp
         deleteTempFile(picture.url);
