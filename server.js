@@ -50,13 +50,17 @@ app.delete('/api/pics/:id', isLoggedIn, pictureController.delete);
 app.post('/api/pics/upload', isLoggedIn, pictureController.upload);
 app.delete('/api/pics/unlink/:filename', isLoggedIn, pictureController.deleteByFilename);
 
-// REST API CATEGORY + SUBCATEGORY
-app.get('/api/cat', categoryController.list);
-app.post('/api/cat', isLoggedIn, categoryController.add);
-app.delete('/api/cat/:id', isLoggedIn, categoryController.delete);
-app.get('/api/cat/subs/:ubercat', subcategoryController.listSubcategories);
-app.post('/api/cat/subs', subcategoryController.addSubcategotery);
-app.delete('/api/cat/subs/:id', isLoggedIn, subcategoryController.delete);
+// REST API CATEGORY
+app.get('/api/cat', categoryController.list);				 		// list all
+app.post('/api/cat', isLoggedIn, categoryController.add); 			// add one
+app.delete('/api/cat/:id', isLoggedIn, categoryController.delete); 	// delete by id
+
+// REST API SUBCATEGORY
+app.get('/api/cat/subs/:ubercat', subcategoryController.listSubcategories); 	 	// list all of one ubercategory
+app.post('/api/cat/subs', isLoggedIn, subcategoryController.addSubcategotery);   	// add one
+app.get('/api/cat/sub/:name', subcategoryController.getSingleSubcategory);		 	// get single subcategory		
+app.post('/api/cat/sub/:name', isLoggedIn, subcategoryController.updatePreview);	// update preview picture of named subcategory
+app.delete('/api/cat/subs/:id', isLoggedIn, subcategoryController.delete); 		 	// delete by id
 
 // admin routes
 require('./server/routes/admin-routes.js')(app, passport);

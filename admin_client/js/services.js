@@ -91,8 +91,17 @@ appService.service('SubcategoryService', ['$resource',
 			var subcategory = new Category();
 			subcategory.name = _name;
 			subcategory.ubercategory = ubercategory;
+			subcategory.preview = "";
 			subcategory.$save(function (result) {
 				callback(result);
+			});
+		},
+		setPreviewPicture: function (subcategory, ubercategory, previewPicture) {
+			var Subcategory = $resource('/api/cat/sub/' + subcategory);
+			var sub = Subcategory.get({ }, function () {
+				console.log(sub);
+				sub.preview = previewPicture;
+				sub.$save();
 			});
 		},
 		remove: function (_cat) {

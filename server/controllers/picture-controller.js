@@ -46,7 +46,7 @@ var deleteTempFile = function (filename) {
   });
 }
 
-var processPicture = function (picture) {
+var processPicture = function (picture, res) {
   // make thumbnail
   lwip.open( path.join(rootPath + tmp + picture.url), function (err, image) {
     if (err) {
@@ -77,8 +77,8 @@ var processPicture = function (picture) {
         // store in mongo
         picture.save(function (err, result) {
           if (err) console.log(err);
-          //res.json(result);
-          console.log('Done Saving Picture.')
+          res.json(result);
+          console.log('Done Saving Picture. ')
         });
       });
   });
@@ -104,8 +104,9 @@ var processQueue = function () {
 
 module.exports.add = function (req, res) {
   var picture = new Picture(req.body);
-  JobProcessor.jobqueue.push(picture);
-  JobProcessor.setRunStatus(true);
+  processPicture(picture, res);
+  //JobProcessor.jobqueue.push(picture);
+  //JobProcessor.setRunStatus(true);
 }
 
 module.exports.list = function (req, res) {

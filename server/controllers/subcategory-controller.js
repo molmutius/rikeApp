@@ -25,3 +25,14 @@ module.exports.delete = function (req, res) {
     res.json(result);
   });
 }
+
+module.exports.getSingleSubcategory = function (req, res) {
+  Category.findOne({name: req.params.name }, function (err, result) {
+    if (err) console.log(err)
+    res.json(result);
+  });
+}
+
+module.exports.updatePreview = function (req, res) {
+  Category.update({ name: req.params.name }, { $set: { preview: req.body.preview }}).exec();
+}

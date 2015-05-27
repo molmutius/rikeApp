@@ -54,9 +54,7 @@ appController.controller('GalleryCtrl', ['$scope', '$routeParams', '$resource',
           caption: entry.caption
         };
         $scope.items.push(item);
-
       });
-      
     });
 
 }]);

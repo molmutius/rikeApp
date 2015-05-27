@@ -108,7 +108,12 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
     picture.subcategory = pic.subcategory;
     picture.isPreview = pic.isPreview;
     picture.$save(function (result) {
-      FileService.remove(picture.url)
+      // remove tmp file
+      FileService.remove(picture.url);
+      // check if preview and update subcategory
+      if (picture.isPreview) {
+        SubcategoryService.setPreviewPicture(picture.subcategory, picture.category, picture.url);
+      }
     });
   };
 

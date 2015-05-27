@@ -8,7 +8,7 @@
     </div>
 
     <div class="col-md-9" ng-hide="loader.loading">
-      <h2>Es gibt {{pictures.length}} Bilder <a ng-click="delAllPictures()" class="btn btn-default "><i class="fa fa-trash"></i> Alle Löschen</a></h2>
+      <h2>Es gibt {{pictures.length}} Bilder <a ng-click="delAllPictures()" class="btn btn-danger "><i class="fa fa-trash"></i> Alle Löschen</a></h2>
 
       <div class="picture gallery">
         <ul class="picture">
@@ -16,6 +16,7 @@
             <img ng-src="../uploads/thumbs/thumb-{{pic.url}}" class="img-responsive thumbnail">
             <div ng-hide="!pic.caption"><i>"{{pic.caption}}"</i><br></div>
             <b>{{pic.category}}</b> - {{pic.subcategory}}<br>
+            <span ng-show="pic.isPreview">ist Vorschaubild</span>
             <a ng-click="delPicture(pic)" class="delete-button btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
           </li>
         </ul>

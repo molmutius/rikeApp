@@ -5,6 +5,7 @@ html, body {
 }
 
 a {
+  color: #fff !important;
   text-transform: uppercase;
   font-family: 'Julius Sans One', sans-serif;
 }

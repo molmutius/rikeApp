@@ -17,22 +17,26 @@ ul li img {
 }
 
 .background {
-	background: url(/front/img/placeholder_large.jpg);
-	height: 340px;
-  	background-size:cover;
+	overflow: hidden;
+	height: 100%;
+  	background-size: cover;
+  	background-repeat: no-repeat;
 }
 
 .overlay    {  
 	background:rgba(0,0,0,.75);
    	text-align:center;
+   	font-size: 2em;
    	height: 100%;
-   	padding:160px 0 0 0;
-   	opacity:0;
-    -webkit-transition: opacity .25s ease;
-	-moz-transition: opacity .25s ease;
+   	padding-top: 25%;
+   	padding-bottom: 25%;
+   	opacity: .75;
+    -webkit-transition: opacity .2s ease;
+	-moz-transition: opacity .2s ease;
 }
 
 .background:hover .overlay {
-    opacity:1;
+	background:rgba(0,0,0,.25);
+    opacity: .5;
     
 }
