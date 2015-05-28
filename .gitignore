@@ -1,1 +1,6 @@
 uploads/
+.c9/
+data/
+mongod
+rikeApp.sublime-project
+npm-debug.log

@@ -40,8 +40,6 @@ appController.controller('GalleryCtrl', ['$scope', '$routeParams', '$resource',
     var Picture = $resource('/api/pics/' + $routeParams.category + '+' + $routeParams.sub);
 
     Picture.query(function (results) {
-      $scope.loader.loading = false;
-      
       results.forEach(function(entry, i) {
         var item = {
           id: i, 
@@ -55,6 +53,7 @@ appController.controller('GalleryCtrl', ['$scope', '$routeParams', '$resource',
         };
         $scope.items.push(item);
       });
+      $scope.loader.loading = false;
     });
 
 }]);
