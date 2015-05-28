@@ -17,8 +17,6 @@ appController.controller('MainCtrl', ['$scope', '$location', '$resource', 'Categ
       $scope.loader.loading = false;
     });
 
-    $scope.css = '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css';
-
 }]);
 
 // Landing-Page
