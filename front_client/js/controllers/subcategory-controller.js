@@ -13,7 +13,7 @@ appController.controller('SubcategoryCtrl', ['$scope', '$location', 'Subcategory
     // get the subcategories
     $scope.subcategories = [];
     SubcategoryService.get($routeParams.category, function (result) {
-      console.log($routeParams.category);
+      //console.log($routeParams.category);
       $scope.subcategories = result;
       $scope.loader.loading = false;
     });
