@@ -8,6 +8,11 @@
       <meta name="description" content="">
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+
+  </head>
+  <body ng-cloak>
+
       <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
       <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css">
@@ -22,8 +27,36 @@
       <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:300'>
       <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Julius+Sans+One'>
 
-  </head>
-  <body ng-cloak>
+      <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-resource.min.js"></script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-route.min.js"></script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-animate.min.js"></script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-touch.min.js"></script>
+
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+      <script type="text/javascript" src="/front/js/ap.fotorama.min.js"></script>
+
+      <!--
+      <script type="text/javascript" src="/front/js/app.js"></script>
+      <script type="text/javascript" src="/front/js/controllers/home-controller.js"></script>
+      <script type="text/javascript" src="/front/js/controllers/gallery-controller.js"></script>
+      <script type="text/javascript" src="/front/js/controllers/subcategory-controller.js"></script>
+      <script type="text/javascript" src="/js/services.js"></script>
+      -->
+      
+      <script type="text/javascript" src="/front/js/rikeapp.min.js"></script>
+
+
+      <script>
+        $(document).on('click','.navbar-collapse.in',function(e) {
+            if( $(e.target).is('a') ) {
+                $(this).collapse('hide');
+            }
+        });
+      </script>
 
     <nav ng-cloak class="navbar navbar-default navbar-fixed-top" bs-navbar>
       <div class="container">
@@ -53,36 +86,7 @@
       <div class="container main-content view-frame" ng-view></div>
     </div>
 
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-resource.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-route.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-animate.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-touch.min.js"></script>
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
-    <script type="text/javascript" src="/front/js/ap.fotorama.min.js"></script>
-
-    <!--
-    <script type="text/javascript" src="/front/js/app.js"></script>
-    <script type="text/javascript" src="/front/js/controllers/home-controller.js"></script>
-    <script type="text/javascript" src="/front/js/controllers/gallery-controller.js"></script>
-    <script type="text/javascript" src="/front/js/controllers/subcategory-controller.js"></script>
-    <script type="text/javascript" src="/js/services.js"></script>
-    -->
     
-    <script type="text/javascript" src="/front/js/rikeapp.min.js"></script>
-
-
-    <script>
-      $(document).on('click','.navbar-collapse.in',function(e) {
-          if( $(e.target).is('a') ) {
-              $(this).collapse('hide');
-          }
-      });
-    </script>
 
   </body>
 </html>
