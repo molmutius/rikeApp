@@ -18,14 +18,16 @@ module.exports = function(grunt) {
     uglify: {
       front: {
         files: [
-          {src: ['front_client/js/ap.fotoramajs', 'front_client/js/controllers/*.js', 'front_client/js/app.js', 'admin_client/js/services.js'], dest: 'front_client/js/rikeapp.min.js'},
+          {src: ['front_client/js/controllers/*.js', 'front_client/js/app.js', 'admin_client/js/services.js'], dest: 'front_client/js/rikeapp.min.js'},
         ],
       },
+      /*
       admin: {
         files: [
           {src: ['front_client/js/controllers/*.js', 'front_client/js/app.js', 'admin_client/js/services.js'], dest: 'front_client/js/rikeapp.min.js'},
         ],
       },
+      */
     },
 
     cssmin: {

@@ -78,10 +78,13 @@ appService.service('SubcategoryService', ['$resource',
 
 	return {
 		get: function (ubercat, callback) {
-			if (typeof ubercat !== 'undefined')
+			console.log(ubercat);
+			if (typeof ubercat !== 'undefined') {
 				Subcategory = $resource('/api/cat/subs/' + ubercat);
-			else
-				Subcategory = $resource('/api/cat/subs/' + ubercat);
+				if (typeof ubercat.value !== 'undefined') {
+					Subcategory = $resource('/api/cat/subs/' + ubercat.value);
+				}	
+			}
 			Subcategory.query().$promise.then(function (results) {
 				callback(results);	
 			});
