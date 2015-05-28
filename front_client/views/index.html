@@ -68,5 +68,13 @@
     <script type="text/javascript" src="/front/js/controllers/subcategory-controller.js"></script>
     <script type="text/javascript" src="/js/services.js"></script>
 
+    <script>
+      $(document).on('click','.navbar-collapse.in',function(e) {
+          if( $(e.target).is('a') ) {
+              $(this).collapse('hide');
+          }
+      });
+    </script>
+
   </body>
 </html>
