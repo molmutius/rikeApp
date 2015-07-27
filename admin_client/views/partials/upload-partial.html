@@ -45,11 +45,11 @@
         <form>
           <div class="form-group">
             <label>Kategorie für alle Bilder vorher festlegen (optional)</label><br>
-            <select type="text" class="form-control" ng-model="category" ng-options="opt as opt.value for opt in categoryOptions"></select>
+            <select type="text" class="form-control" ng-model="category" ng-options="opt.value for opt in categoryOptions"></select>
           </div>
           <div class="form-group">
             <label>Unterkategorie für alle Bilder vorher festlegen (optional)</label><br>
-            <select type="text" class="form-control" ng-model="subcategory" ng-options="opt as opt.name for opt in subcategoryOptions" ng-disabled="noCategorySet"></select>
+            <select type="text" class="form-control" ng-model="subcategory" ng-options="opt.name for opt in subcategoryOptions" ng-disabled="noCategorySet"></select>
           </div>
           <div class="form-group">
             <label>Bild(er) von Festplatte wählen</label><br>

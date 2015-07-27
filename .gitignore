@@ -3,4 +3,5 @@ uploads/
 data/
 mongod
 rikeApp.sublime-project
+rikeApp.sublime-workspace
 npm-debug.log

@@ -4,6 +4,10 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
 .controller('UploadCtrl', ['$scope', '$upload', '$resource', 'FileService', 'CategoryService', 'SubcategoryService',
   function ($scope, $upload, $resource, FileService, CategoryService, SubcategoryService) {
 
+  $scope.$watch('files', function () {
+    $scope.upload($scope.files);
+  });
+
   $scope.noCategorySet = true;
 
   var categories = [];
@@ -16,6 +20,7 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
       $scope.categoryOptions.push({ name: (i + 1), value: categories[i].value});
     }
     $scope.category = $scope.categoryOptions[0];
+    $scope.subcategory = {};
 
     // disable subcategory picker if no category is set
     $scope.$watch('category', function () {
@@ -35,11 +40,12 @@ angular.module('rikeAppUploadController', ['rikeAppService'])
     })
   });
 
-  $scope.$watch('files', function () {
-    $scope.upload($scope.files);
-  });
-
   $scope.pics = FileService.get();
+
+
+  $scope.$watch('pics', function () {
+    console.log($scope.pics);
+  });
 
   $scope.upload = function (files) {
     if (files && files.length) {
